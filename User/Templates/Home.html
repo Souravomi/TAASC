@@ -1,0 +1,190 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TAASC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/yourcode.js"></script>
+    <!-- Bootstrap -->
+    <link href="{% static 'User/Base.css' %}" rel="stylesheet">
+
+    <style>
+       
+      .alert {
+        padding: 9px;
+        background-color: #f44336;
+        color: white;
+        opacity: 1;
+        transition: opacity 0.6s;
+        margin-bottom: 15px;
+        margin-left: 32px;
+        margin-right: 32px;
+      }
+      
+      .alert.success {background-color: #4CAF50;}
+      .alert.info {background-color: #2196F3;}
+      .alert.warning {background-color: #ff9800;}
+      
+      .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      
+      .closebtn:hover {
+        color: black;
+      }
+    
+      .input-icons i { 
+         position: absolute; 
+     } 
+       
+     .input-icons { 
+         width: 100%; 
+         margin-bottom: 10px; 
+     } 
+       
+     .icon { 
+         padding: 10px; 
+         color: green; 
+         min-width: 50px; 
+         text-align: center; 
+     } 
+       
+     .input-field { 
+         width: 100%; 
+         padding: 10px; 
+         text-align: center; 
+     } 
+       
+     h2 { 
+         color: green; 
+     } 
+    
+      </style>
+
+  </head>
+  <body> 
+  
+   
+     <div class="jumbotron jumbotron-fluid text-center">
+     
+     <h3  class="mb-3"style="color:white">TAASC - Thiruvananthapuram , Amboori , Ayoor Social Service and Charitable Society </h4>
+     <a class="btn btn-outline-primary" href="https://docs.google.com/document/d/1r1w8HLhGywsfm140AwlThmMrGJFGDhLHIkr_XtIdwy8/edit" target="_blank">About</a>
+    <a class="btn btn-outline-success" href="{% url 'Passwordupdate' %}" >Password Change</a>
+    <a class="btn btn-outline-danger my-2 my-sm-0" href="{% url 'Logout' %}" >Logout</a>
+      
+       
+     </div> 
+
+     {% comment %} <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+       
+      <a class="navbar-brand" href="#"><p><h2>TAASC</h2></p></a>  <span> <h1 style="color:white">| </h1> </span> <b style="color:white">  &nbsp; &nbsp; Home</b>
+     
+     
+      
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         
+            <ul class="navbar-nav mr-auto">
+            
+          <li>
+          </li>		  
+            </ul>
+          
+             
+       
+         </div>
+      </nav> {% endcomment %}
+
+
+
+     {% if messages %}
+     {% for message in messages %}
+     <br>
+     <div class="alert">
+      <span class="closebtn">&times;</span>  
+     <li class="nav-link" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+   </div>
+   <br>
+     {% endfor %}
+ {% endif %}
+  
+
+<div class="container mt-5" style="display: flex;
+justify-content: center">
+
+<div class="row">
+  <div class ="mt-2 mb-2 ml-2 mr-2"></div>
+
+  <div class=" card shadow p-3 mb-5 " style="width: 18rem;">
+    <img class="card-img-top" src="{% static 'images/icons/add-user.svg'%}" alt="Card image cap" height="150px">
+    <div class="card-body">
+      <h5 class="card-title">Add new Member </h5>
+      <p class="card-text">Add a new Member to TAASC database by filling out the required forms .</p>
+      <a href="{% url 'Profile' %}"class="btn btn-primary" >Add New Member</a>
+    </div>
+  </div>
+  
+  <div class ="mt-2 mb-2 ml-2 mr-2"></div>
+
+  <div class="card shadow p-3 mb-5" style="width: 18rem;">
+    <img class="card-img-top" src="{% static 'images/icons/document.svg'%}" alt="Card image cap" height="150px">
+    <div class="card-body">
+      <h5 class="card-title">Update Profile</h5>
+      <p class="card-text"> View / Edit / Add details of an Existing member .</p>
+     <form action="{% url 'Profile_Home'  %}" method="GET">
+
+        <input  class="form-control"  type="text" AuthId name="AuthId" placeholder="Aadhaar ID" pattern="[0-9]{12}" title="Please Enter Valid Aadhar" maxlength="12" required>
+    
+      <input class="btn btn-primary  mt-2 " type="submit" value="Find Profile">
+      </form>
+    </div> 
+  </div>
+
+  <div class ="mt-2 mb-2 ml-2 mr-2"></div>
+  
+<div class="card shadow p-3 mb-5 " style="width: 18rem;">
+    <img class="card-img-top" src="{% static 'images/icons/binoculars.svg'%}" alt="Card image cap" height="150px">
+    <div class="card-body">
+      <h5 class="card-title">Find Details</h5>
+      <p class="card-text">Some quick example text to build on the card title and m.</p>
+      <a href="{% url 'Advancedsearch:Search' %}" class="btn btn-primary">Find Member Details</a>
+    </div>
+  </div>
+</div>
+  
+<!-- Message button --> 
+<script>
+        
+  var close = document.getElementsByClassName("closebtn");
+  var i;
+  
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function(){
+      var div = this.parentElement;
+      div.style.opacity = "0";
+      setTimeout(function(){ div.style.display = "none"; }, 600);
+    }
+  }
+  </script>
+
+       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+    <script src="js/jquery-3.2.1.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed --> 
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap-4.0.0.js"></script>
+  </body>
+</html>

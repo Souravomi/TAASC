@@ -1,0 +1,73 @@
+{% extends 'Common_Template.html' %}
+{% load static %}
+
+{% block body %}
+
+
+	<div class="container-contact100">
+<!--		<div class="contact100-map" id="google_map" data-map-x="40.722047" data-map-y="-73.986422" data-pin="images/icons/map-marker.png" data-scrollwhell="0" data-draggable="1"></div> -->
+			<div class="contact100-map" style="background-image: url(../static/images/bg-07.jpg);" data-scrollwhell="0" data-draggable="1"></div>
+
+		<div class="wrap-contact100">
+			<div class="contact100-form-title" style="background-image: url(../static/images/bg-01.jpg);">
+				<span class="contact100-form-title-1">
+					Rubber Farming Details
+				</span>
+
+				<span class="contact100-form-title-2">
+					Enter rubber farming details
+				</span>
+			</div>
+
+			<form class="contact100-form validate-form" method="POST">
+
+				{% csrf_token %}
+
+				<div class="wrap-input100 validate-input">
+					<span class="label-input100">Land:</span>
+					<input class="input100" type="number" name="rubberland" id="rubberlandId" value="{{ response.Land_Area}}" min="0">
+					<span class="focus-input100"></span>
+                </div>
+				<div class="wrap-input100 validate-input">
+					<span class="label-input100">Count:</span>
+					<input class="input100" type="number" name="rubbercount" id="rubbercountId" value="{{ response.Count}}" min="0">
+					<span class="focus-input100"></span>
+                </div>
+                
+                <div class="wrap-input100 validate-input">
+					<span class="label-input100">Latex:</span>
+					<input class="input100" type="number" name="latex" id="latexId" value="{{ response.Income}}" min="0">
+					<span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+					<span class="label-input100">Rubber Sheet:</span>
+					<input class="input100" type="number" name="rubbersheet" id="rubbersheetId" value="{{ response.Rubber_Sheet}}" min="">
+					<span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+					<span class="label-input100">Rubber Board Membership:</span>
+					<select class="input100" name="membership" id="membership" style="padding-top: 10px; border-color: transparent;" required> 
+						<option value="{{response.Rubber_Board}}"  selected >{{ response.Rubber_Board}}</option>
+						<option value="yes">yes</option>
+						<option value="no">no</option>
+					</select>
+                </div>
+
+				<div>
+					<div class="container-contact100-form-btn">
+                        <button class="contact100-form-btn" type="submit" style="margin-left: 50px;">
+                            <span>
+                                UPDATE
+                            </span>
+                        </button>
+                    </div>
+                </div>
+			</form>
+		</div>
+	</div>
+
+
+
+	{% endblock %}

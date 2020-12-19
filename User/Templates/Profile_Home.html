@@ -1,0 +1,427 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TAASC</title>
+
+    <!-- Bootstrap -->
+    <link href="{% static 'User/Base.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/popup.css' %}">
+
+  </head>
+  <body >
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+       
+      <a class="navbar-brand" href="#"><p><h2>TAASC</h2></p></a>
+      
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         
+            <ul class="navbar-nav mr-auto">
+            
+          <li>
+          </li>		  
+            </ul>
+              
+            <form class="form-inline my-2 my-lg-0">
+              <li class="nav-link"> <a  href="{% url 'Home' %}">  
+                <i class="fa fa-home" style="font-size: 32px; color:white;"></i>
+              </a>
+               </li> 
+
+             <li class="nav-link"> <a  href="{% url 'Logout' %}">  
+              <i class="fas fa-sign-out-alt" style="font-size: 32px; color:white;"></i>
+            </a>
+             </li> 
+             
+       </form>
+         </div>
+      </nav>
+
+
+      {% if messages %}
+      {% for message in messages %}
+      <br>
+      <div class="alert success">
+       <span class="closebtn">&times;</span>  
+      <li class="nav-link" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    </div>
+    <br>
+      {% endfor %}
+  {% endif %}
+ 
+
+       <div class="container">
+        <br>
+        <div class="row">
+           <div class="col-md-4">
+              <div class="card">
+
+                <img class="card-img-top" src="{% static 'images/icons/woodland.svg' %}" alt="Card image cap"  height="320"/>
+
+                 <ul class="list-group list-group-flush">
+                    <li class="list-group-item"> <i class="fas fa-home" style="color:green"> </i><a href="{% url 'Family' %}" class="card-link">    Familiy Details</a></li>
+                    <li class="list-group-item"><i class="fas fa-tree" style="color:green"> </i><a href="{% url 'Rubber' %}" class="card-link">   Rubber Farming</a></li>
+                     <li class="list-group-item"><i class="fas fa-horse" style="color:green"> </i><a href="{% url 'Animal' %}" class="card-link">   Domestic Animals</a></li>
+                     <li class="list-group-item"><i class="fas fa-fish"style="color:green"> </i><a href="{% url 'Fish' %}" class="card-link">   Fish Farming</a></li>
+                     <li class="list-group-item"><i class="fab fa-pagelines"style="color:green"> </i><a href="{% url 'Veg_Fru' %}" class="card-link">   Vegetables & Fruits Farming</a></li>
+                     <li class="list-group-item"><i class="fas fa-poll"style="color:green"> </i><a href="{% url 'Survey' %}" class="card-link">   Survey</a></li>
+                 </ul>
+                 
+              </div>
+           </div>
+     
+           <div class="col-md">
+
+
+            <div class="card">
+              <div class="card-body">
+                  <center><h4 class="card-title">PROFILE DETAILS</h4></center>
+                  <a class="btn btn-success"href="{% url 'updateprofile' %}">Update</a>
+                   <hr>
+                   <div class="row">
+                       <div class="col-md">
+                       <div class="">
+                       <div class="card-body">
+                    <label><strong>Aadhar Number :</strong></label>
+                   <input class="form-control mr-sm-2" type="text" placeholder="Aadhar Number"  disabled value="{{ Profile.Auth_Id }}">
+                   <label><strong>Grade :</strong></label>
+                  
+                   <input class="form-control mr-sm-2" type="text" placeholder="Grade" disabled value="കുടുംബനാഥൻ">
+                   
+
+                   <label><strong>House Name :</strong></label>
+                   <input class="form-control mr-sm-2" type="text" placeholder="House Name" disabled  value="{{ Profile.House }}">
+                   <label><strong>District :</strong></label>
+                   <input class="form-control mr-sm-2" type="text" placeholder="District"  disabled value="{{ Profile.District }}">
+                   <label><strong>Phone :</strong></label>
+                   <input class="form-control mr-sm-2" type="text" placeholder="Phone" disabled value="{{ Profile.Phone }}">
+                   <label><strong>Created :</strong></label>
+                   <input class="form-control mr-sm-2" type="text" placeholder="Created"  disabled value="{{ Profile.Created_Date }}">
+                   </div>
+                   </div>
+                   
+                   </div>
+                   
+                   <div class="col-md">
+                       <div class="">
+                       <div class="card-body">
+                    <label><strong>Profile Name :</strong></label>
+                   <input class="form-control mr-sm-2" type="text" placeholder="Profile Name" disabled value="{{ Profile.Name }}" >
+                   <label><strong>Parish Name :</strong></label>
+                   <input class="form-control mr-sm-2" type="text" placeholder="Parish Name" disabled  value="{{ Profile.Parish }}" >
+                   <label><strong>Village :</strong></label>
+                   <input class="form-control mr-sm-2" type="text" placeholder="Village" disabled value="{{ Profile.Village }}" >
+                   <label><strong>Muncipality :</strong></label>
+                   <input class="form-control mr-sm-2" type="text" placeholder="Muncipality"disabled  value="{{ Profile.Panch_Muns}}" >
+                   <label><strong>Email :</strong></label>
+                   <input class="form-control mr-sm-2" type="text" placeholder="Email" disabled value="{{ Profile.Email }}" >
+                   <label><strong>Occupation :</strong></label>
+                   <input class="form-control mr-sm-2" type="text" placeholder="Occupation" disabled value="{{ Profile.Occupation}}">
+               </div>
+            </div>
+  
+         </div>     
+         </div>
+                  </div>
+                </div>
+              </div>
+      </div>
+             
+    </div>
+
+    <div class="container">
+      <br>
+      <div class="row">
+      <label><strong><span style="color:#534d4d">Family Details :</span></strong></label>
+
+      <table class="table table-bordered table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Relation</th>
+              <th scope="col">Blood</th>
+              <th scope="col">Job</th>
+              <th scope="col">Contact</th>
+              <th scope="col">Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for data in Family %}
+            <tr>
+              <td>{{ data.Name }}</td>
+              <td>{{ data.Relationship }}</td>
+              <td>{{ data.Blood }}</td>
+              <td>{{ data.Job }}</td>
+              <td>{{ data.Phone }}</td>
+              <td>
+                <form action="{% url 'updateFamily' %}" method="GET">
+                  <input type = "text"  hidden value={{data.id}} name="fieldkey">
+                 <input type="submit" value ="update" class="btn btn-success"/>
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        </div>
+        </div>
+
+        <div class="container">
+          <br>
+          <div class="row">
+            <label><strong><span style="color:#534d4d">Rubber Farming Details :</span></strong></label>
+    
+            <table class="table table-bordered table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Land Area</th>
+                  <th scope="col">Count</th>
+                  <th scope="col">Income</th>
+                  <th scope="col">Rubber Sheet</th>
+                  <th scope="col">Member Of Rubber Board</th>
+                  <th scope="col">Options</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for data in Rub %}
+                <tr>
+                  <td>{{ data.Land_Area }}</td>
+                  <td>{{ data.Count }}</td>
+                  <td>{{ data.Income }}</td>
+                  <td>{{ data.Rubber_Sheet }}</td>
+                  <td>{{ data.Rubber_Board }}</td>
+                  <td>
+                    <form action="{% url 'updateRubber'%}" method="GET">
+                      <input type = "text"  hidden value={{data.id}} name="fieldkey">
+                     <input type="submit" value ="update" class="btn btn-success"/>
+                    </form>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+    
+            </div>
+            </div>
+
+            <div class="container">
+              <br>
+              <div class="row">
+                <label><strong><span style="color:#534d4d">Domestic Animals Details :</span></strong></label>
+        
+                <table class="table table-bordered table-hover">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Category</th>
+                      <th scope="col">Count</th>
+                      <th scope="col">Income</th>
+                      <th scope="col">Marketing</th>
+                      <th scope="col">Breed</th>
+                      <th scope="col">More Space</th>
+                      <th scope="col">Interest</th>
+                      <th scope="col">Options</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for data in Animl %}
+                    <tr>
+                      <td>{{ data.Category }}</td>
+                      <td>{{ data.Count }}</td>
+                      <td>{{ data.Income }}</td>
+                      <td>{{ data.Marketing }}</td>
+                      <td>{{ data.Weed }}</td>
+                      <td>{{ data.More_Space }}</td>
+                      <td>{{ data.More_Intrest }}</td>
+                      <td>
+                        <form action="{% url 'updateDomestic'%}" method="GET">
+                          <input type = "text"  hidden value={{data.id}} name="fieldkey">
+                         <input type="submit" value ="update" class="btn btn-success"/>
+                        </form>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+        
+                </div>
+                </div>
+
+                <div class="container">
+                  <br>
+                  <div class="row">
+                    <label><strong><span style="color:#534d4d">Fish Farming Details :</span></strong></label>
+            
+                    <table class="table table-bordered table-hover">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th scope="col">Category</th>
+                          <th scope="col">Land Area</th>
+                          <th scope="col">Method</th>
+                          <th scope="col">Income</th>
+                          <th scope="col">Marketing</th>
+                          <th scope="col">More Space</th>
+                          <th scope="col">Interest</th>
+                          <th scope="col">Options</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for data in Fish_Data %}
+                        <tr>
+                          <td>{{ data.Category }}</td>
+                          <td>{{ data.Land_Area }}</td>
+                          <td>{{ data.Method }}</td>
+                          <td>{{ data.Income }}</td>
+                          <td>{{ data.Marketing }}</td>
+                          <td>{{ data.More_Space }}</td>
+                          <td>{{ data.More_Intrest }}</td>
+                          <td>
+                            <form action="{% url 'updateFish'%}" method="GET">
+                              <input type = "text"  hidden value={{data.id}} name="fieldkey">
+                             <input type="submit" value ="update" class="btn btn-success"/>
+                            </form>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+            
+                    </div>
+                    </div>
+
+
+                    <div class="container">
+                      <br>
+                      <div class="row">
+                        <label><strong><span style="color:#534d4d">Vegetables & Fruits Farming Details :</span></strong></label>
+                
+                        <table class="table table-bordered table-hover">
+                          <thead class="thead-dark">
+                            <tr>
+                              <th scope="col">Category</th>
+                              <th scope="col">Land Area</th>
+                              <th scope="col">Income</th>
+                              <th scope="col">Marketing</th>
+                              <th scope="col">Breed</th>
+                              <th scope="col">More Space</th>
+                              <th scope="col">Interest</th>
+                              <th scope="col">Options</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for data in Veg %}
+                            <tr>
+                              <td>{{ data.Category }}</td>
+                              <td>{{ data.Land_Area }}</td>
+                              <td>{{ data.Income }}</td>
+                              <td>{{ data.Marketing }}</td>
+                              <td>{{ data.Weed }}</td>
+                              <td>{{ data.More_Space }}</td>
+                              <td>{{ data.More_Intrest }}</td>
+                              <td>
+                                <form action="{% url 'updateVegFru'%}" method="GET">
+                                  <input type = "text"  hidden value={{data.id}} name="fieldkey">
+                                 <input type="submit" value ="update" class="btn btn-success"/>
+                                </form>
+                              </td>
+                            </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                
+                        </div>
+                        </div>
+
+                        <div class="container">
+                          <br>
+                          <div class="row">
+                            <label><strong><span style="color:#534d4d">Survey Form Details :</span></strong></label>
+                    
+                            <table class="table table-bordered table-hover">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th scope="col">Interest To Join Job Bank</th>
+                                  <th scope="col">Jobs</th>
+                                  <th scope="col">Business</th>
+                                  <th scope="col">News Paper</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              
+                                {% for survy in survy %}
+    
+                                <tr>
+                                   
+                                  <td>
+                                  {{survy.Intrest}}
+                                  </td>
+
+                                  <td>
+                                  {{ survy.Jobs }}
+                                  </td>
+
+                                  <td>
+                                  {{ survy.Business }}
+                                 
+                                  </td>
+
+                                  <td>
+                                  {{survy.News_Paper }}
+                                  
+                                
+                                  </td>
+                                 
+
+
+
+
+
+                                  {% comment %} <td>{{ survy.Jobs }}</td>
+                                  <td>{{ survy.Business }}</td>
+                                  <td>{{ survy.News_Paper }}</td> {% endcomment %}
+                                </tr>
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                    
+                            </div>
+                            </div>
+
+    <br>
+
+         <!-- Message button --> 
+         <script>
+        
+          var close = document.getElementsByClassName("closebtn");
+          var i;
+          
+          for (i = 0; i < close.length; i++) {
+            close[i].onclick = function(){
+              var div = this.parentElement;
+              div.style.opacity = "0";
+              setTimeout(function(){ div.style.display = "none"; }, 600);
+            }
+          }
+          </script>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+    <script src="{% static 'User/js/jquery-3.2.1.min.js' %}"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed --> 
+    <script src="{% static 'User/js/popper.min.js' %}"></script>
+    <script src="{% static 'User/js/bootstrap-4.0.0.js' %}"></script>
+    
+  </body>
+</html>

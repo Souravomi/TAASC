@@ -1,0 +1,116 @@
+{% extends 'Common_Template.html' %}
+{% load static %}
+
+{% block body %}
+
+	
+	<div class="container-contact100">
+	
+<!--		<div class="contact100-map" id="google_map" data-map-x="40.722047" data-map-y="-73.986422" data-pin="images/icons/map-marker.png" data-scrollwhell="0" data-draggable="1"></div> -->
+			<div class="contact100-map" style="background-image: url(../static/images/bg-02.jpg);" data-scrollwhell="0" data-draggable="1"></div>
+
+		<div class="wrap-contact100">
+			{% if messages %}
+			{% for message in messages %}
+			<script>
+				swal("Already In the system!", "This person already exists in our system , Please verify the UID ", "warning");
+			</script>
+		
+		{% endfor %}
+		{% endif %}
+			<div class="contact100-form-title" style="background-image: url(../static/images/bg-01.jpg);">
+				<span class="contact100-form-title-1">
+					Basic Details
+				</span>
+
+				<span class="contact100-form-title-2">
+					Enter your personal details
+				</span>
+			</div>
+
+			<form class="contact100-form validate-form" action=""  method="POST">
+
+				{% csrf_token %}
+				<span style="color:red"><string>Aadhar Number : {{ response.Auth_Id }}</string></span>
+				<br>
+				<br>
+				<div class="wrap-input100 validate-input">
+					<span class="label-input100">House Name:</span>
+					<input class="input100" type="text" name="house" id="houseId" value="{{ response.House }}" required>
+					<span class="focus-input100"></span>
+                </div>
+                
+                <div class="wrap-input100 validate-input">
+					<span class="label-input100">Parish:</span>
+					<input class="input100" type="text" name="parish" id="parishId" value="{{ response.Parish }}" required>
+					<span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+					<span class="label-input100">Village:</span>
+					<input class="input100" type="text" name="village" id="villageId" value="{{ response.Village }}" required>
+					<span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+					<span class="label-input100">Local Government:</span>
+					<input class="input100" type="text" name="muncipality" id="muncipalityId" value="{{ response.Panch_Muns }}" required>
+					<span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+					<span class="label-input100">District:</span>
+					<select class="input100" name="district" id="districtId" style="padding-top: 10px; border-color: transparent;" required>
+                        <option value="{{ response.District }}"selected hidden>{{ response.District }}</option> 
+                        <option value="Alappuzha">	Alappuzha</option>
+                        <option value="Ernakulam">Ernakulam</option>
+                        <option value="Idukki">Idukki</option>
+                        <option value="Kannur">Kannur</option>
+                        <option value="Kasaragod">Kasaragod</option>
+                        <option value="Kollam">Kollam</option>
+                        <option value="Kottayam">Kottayam</option>
+						<option value="Kozhikode">Kozhikode</option>
+						<option value="Malappuram">Malappuram</option>
+						<option value="Palakkad">Palakkad</option>
+						<option value="Pathanamthitta">Pathanamthitta</option>
+						<option value="Thiruvananthapuram">Thiruvananthapuram</option>
+						<option value="Thrissur">Thrissur</option>
+						<option value="Wayanad">Wayanad</option>
+						<option value="Other">Other</option>
+                    </select>
+                </div>
+
+				<div class="wrap-input100 validate-input">
+					<span class="label-input100">Phone:</span>
+					<input class="input100" type="text" name="phone" id="phoneId" value="{{ response.Phone }}"   maxlength="10" pattern="[1-9]{1}[0-9]{9}" title="Please Enter Valid Number" required>
+					<span class="focus-input100"></span>
+                </div>
+                
+                <div class="wrap-input100 validate-input">
+					<span class="label-input100">Email:</span>
+					<input class="input100" type="email" name="email" id="emailId" value="{{ response.Email }}" required>
+					<span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+					<span class="label-input100">Occupation/ Business:</span>
+					<input class="input100" type="text" name="occupation" id="occupationId" value="{{ response.Occupation }}" required>
+					<span class="focus-input100"></span>
+                </div>
+
+				<div>
+					<div class="container-contact100-form-btn">
+                        <button class="contact100-form-btn" type="submit" style="margin-left: 50px;">
+                            <span>
+                                UPDATE
+                            </span>
+                        </button>
+                    </div>
+                </div>
+		
+			</form>
+		</div>
+	</div>
+
+
+	{% endblock %}

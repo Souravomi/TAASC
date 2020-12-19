@@ -1,0 +1,103 @@
+{% extends 'Common_Template.html' %}
+{% load static %}
+
+{% block body %}
+
+
+	<div class="container-contact100">
+<!--		<div class="contact100-map" id="google_map" data-map-x="40.722047" data-map-y="-73.986422" data-pin="images/icons/map-marker.png" data-scrollwhell="0" data-draggable="1"></div> -->
+			<div class="contact100-map" style="background-image: url(../static/images/bg-03.jpg);" data-scrollwhell="0" data-draggable="1"></div>
+
+		<div class="wrap-contact100">
+			<div class="contact100-form-title" style="background-image: url(../static/images/bg-01.jpg);">
+				<span class="contact100-form-title-1">
+					Domestic Animal Details
+				</span>
+
+				<span class="contact100-form-title-2">
+					Enter domestic animal details
+				</span>
+			</div>
+
+			<form class="contact100-form validate-form" action="" method="POST">
+
+				{% csrf_token %}
+
+                <div class="wrap-input100 validate-input">
+                    <span class="label-input100">Type:</span>
+                    <select class="input100" name="animaltype" id="animaltypeId" style="padding-top: 10px; border-color: transparent;" required>
+                        <option value="{{ response.Category }}" selected >{{ response.Category }}</option> 
+                        <option value="cow">Cow</option>
+                        <option value="goat">Goat</option>
+                        <option value="chicken">Chicken</option>
+                        <option value="duck">Duck</option>
+                        <option value="rabbit">Rabbit</option>
+                        <option value="Others">Others</option>
+                    </select>
+				</div>
+
+				<div class="wrap-input100 validate-input">
+					<span class="label-input100">Count:</span>
+					<input class="input100" type="number" name="animalcount" id="animalcountId" value="{{ response.Count }}" min="0" required>
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input">
+					<span class="label-input100">Income:</span>
+					<input class="input100" type="number" name="animalincome" id="animalincomeId" value="{{ response.Income }}" required>
+					<span class="focus-input100"></span>
+                </div>
+                
+                <div class="wrap-input100 validate-input">
+					<span class="label-input100">Marketing:</span>
+					<input class="input100" type="text" name="animalmarketing" id="animalmarketingId" value="{{ response.Marketing }}"  required>
+					<span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+					<span class="label-input100">Breed Farming:</span>
+					<select class="input100" name="animalbreed" id="animalbreedId" style="padding-top: 10px; border-color: transparent;" required>
+						<option value="{{ response.Weed }}"  selected >{{ response.Weed }}</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+					<span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+					<span class="label-input100">Capacity To Include More:</span>
+					<select class="input100" name="animalcapacity" id="animalcapacityId" style="padding-top: 10px; border-color: transparent;" required>
+						<option value="{{ response.More_Space }}"  selected >{{ response.More_Space }}</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+					<span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+					<span class="label-input100">Intrest To Include More:</span>
+					<select class="input100" name="animalinterest" id="animalinterestId" style="padding-top: 10px; border-color: transparent;" required>
+						<option value="{{ response.More_Intrest }}"  selected >{{ response.More_Intrest }}</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+					<span class="focus-input100"></span>
+                </div>
+
+				
+				<div>
+					<div class="container-contact100-form-btn">
+                        <button class="contact100-form-btn" type="submit" style="margin-left: 50px;">
+                            <span>
+                                UPDATE
+                            </span>
+                        </button>
+                    </div>
+                </div>
+			</form>
+		</div>
+	</div>
+
+
+
+	{% endblock %}

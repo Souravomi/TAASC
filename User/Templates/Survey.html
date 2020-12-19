@@ -1,0 +1,92 @@
+{% extends 'Common_Template.html' %}
+{% load static %}
+
+{% block body %}
+
+
+	<div class="container-contact100">
+<!--		<div class="contact100-map" id="google_map" data-map-x="40.722047" data-map-y="-73.986422" data-pin="images/icons/map-marker.png" data-scrollwhell="0" data-draggable="1"></div> -->
+			<div class="contact100-map" style="background-image: url(../static/images/bg-08.jpg);" data-scrollwhell="0" data-draggable="1"></div>
+
+		<div class="wrap-contact100">
+			<div class="contact100-form-title" style="background-image: url(../static/images/bg-09.jpg);">
+				<span class="contact100-form-title-1">
+					TAASC Survey Details
+				</span>
+
+				<span class="contact100-form-title-2">
+					Fill the survey form
+				</span>
+			</div>
+
+			<form class="contact100-form validate-form" action="" method="POST">
+
+				{% csrf_token %}
+
+				<div class="form-check">
+                    <span class="label-input100">Intrested To Join JobBank:</span>
+                    <div class="wrap-input100 validate-input" style="padding-top: 30px; padding-left: 10px;">
+						<label class="radio-container m-r-50">Yes
+                        <input type="radio" value="Yes" name="jobbank" id="jobbankyesId">
+						<span class="checkmark"></span>
+						</label>
+						<label class="radio-container m-r-50">No
+                        <input type="radio" value="No" name="jobbank" id="jobbanknoId">
+						<span class="checkmark"></span>
+						</label>
+					</div> 
+				</div>
+
+				<div class="form-check">
+					<span class="label-input100">Knowing Jobs:</span>
+					<div class="wrap-input100 validate-input" style="padding-top: 10px;">
+						<input class="jobsclass" type="checkbox" name="jobs" id="jobsId" value="plumbing">Plumbing
+						<input class="jobsclass" type="checkbox" name="jobs" id="jobsId" value="electrician">Electrician
+						<input class="jobsclass" type="checkbox" name="jobs" id="jobsId" value="driving">Driving
+						<input class="jobsclass" type="checkbox" name="jobs" id="jobsId" value="coolie">Coolie
+						<input class="jobsclass" type="checkbox" name="jobs" id="jobsId" value="grass_cutting">Grass Cutting<br>
+						<input class="jobsclass" type="checkbox" name="jobs" id="jobsId" value="rubber_tapping">Rubber Tapping<br>
+						<input class="jobsclass" type="checkbox" name="jobs" id="jobsId" value="coconut_tree_climbing">Coconut Tree Climbing
+						<input class="jobsclass" type="checkbox" name="jobs" id="jobsId" value="others">Others
+					</div>
+                </div>
+                
+                <div class="form-check">
+					<span class="label-input100">Business:</span>
+					<div class="wrap-input100 validate-input" style="padding-top: 10px;">
+						<input class="jobsclass" type="checkbox" name="business" id="businessId" value="rubber">Rubber
+						<input class="jobsclass" type="checkbox" name="business" id="businessId" value="bus_owners">Bus Owners<br>
+						<input class="jobsclass" type="checkbox" name="business" id="businessId" value="hardwares">Hardwares
+						<input class="jobsclass" type="checkbox" name="business" id="businessId" value="sanitariser">Sanitariser<br>
+						<input class="jobsclass" type="checkbox" name="business" id="businessId" value="event_management">Event Management
+						<input class="jobsclass" type="checkbox" name="business" id="businessId" value="others">Others
+					</div>
+				</div>
+				
+				<div class="form-check">
+					<span class="label-input100">Daily Newspaper Subscriber:</span>
+					<div class="wrap-input100 validate-input" style="padding-top: 20px;">
+						<input class="jobsclass" type="checkbox" name="newspaper" id="deepika" value="Deepika">Deepika
+						<input class="jobsclass" type="checkbox" name="newspaper" id="manorama" value="Manorama">Manorama<br>
+						<input class="jobsclass" type="checkbox" name="newspaper" id="mathrubhumi" value="Mathrubhumi">Mathrubhumi
+						<input class="jobsclass" type="checkbox" name="newspaper" id="Others" value="Others">Others
+						<input class="jobsclass" type="checkbox" name="newspaper" id="No" value="No">No
+					</div>
+				</div>
+
+
+                <div>
+                    <div class="container-contact100-form-btn">
+                        <button class="contact100-form-btn" type="submit" style="margin-left: 50px;">
+                            <span>
+                                SUBMIT
+                            </span>
+                        </button>
+                    </div>
+                </div>
+			</form>
+		</div>
+	</div>
+
+
+	{% endblock %}

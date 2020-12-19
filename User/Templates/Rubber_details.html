@@ -1,0 +1,76 @@
+{% extends 'Common_Template.html' %}
+{% load static %}
+
+{% block body %}
+
+
+	<div class="container-contact100">
+<!--		<div class="contact100-map" id="google_map" data-map-x="40.722047" data-map-y="-73.986422" data-pin="images/icons/map-marker.png" data-scrollwhell="0" data-draggable="1"></div> -->
+			<div class="contact100-map" style="background-image: url(../static/images/bg-07.jpg);" data-scrollwhell="0" data-draggable="1"></div>
+
+		<div class="wrap-contact100">
+			<div class="contact100-form-title" style="background-image: url(../static/images/bg-01.jpg);">
+				<span class="contact100-form-title-1">
+					Rubber Farming Details
+				</span>
+
+				<span class="contact100-form-title-2">
+					Enter rubber farming details
+				</span>
+			</div>
+
+			<form class="contact100-form validate-form" method="POST">
+
+				{% csrf_token %}
+
+				<div class="wrap-input100 validate-input">
+					<span class="label-input100">Land:</span>
+					<input class="input100" type="number" name="rubberland" id="rubberlandId" placeholder="land in acres" min="0">
+					<span class="focus-input100"></span>
+                </div>
+
+				<div class="wrap-input100 validate-input">
+					<span class="label-input100">Count:</span>
+					<input class="input100" type="number" name="rubbercount" id="rubbercountId" placeholder="number of rubber trees owned" min="0">
+					<span class="focus-input100"></span>
+                </div>
+                
+                <div class="wrap-input100 validate-input">
+					<span class="label-input100">Latex:</span>
+					<input class="input100" type="number" name="latex" id="latexId" placeholder="latex quantity in kilograms" min="0">
+					<span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+					<span class="label-input100">Rubber Sheet:</span>
+					<input class="input100" type="number" name="rubbersheet" id="rubbersheetId" placeholder="enter rubber sheet quantity in kilograms" min="">
+					<span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+					<span class="label-input100">Rubber Board Membership:</span>
+					<select class="input100" name="membership" id="membershipId" style="padding-top: 10px; border-color: transparent;">
+						<option value="" disabled selected hidden>choose yes or no</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+                </div>
+
+               
+
+				<div>
+					<div class="container-contact100-form-btn">
+                        <button class="contact100-form-btn" type="submit" style="margin-left: 50px;">
+                            <span>
+                                ADD
+                                <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+			</form>
+		</div>
+	</div>
+
+
+	{% endblock %}

@@ -1,0 +1,223 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+      <script src="{% static 'js/search.js' %}"></script>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TAASC</title>
+
+    <!-- Bootstrap -->
+    <link href="{% static 'User/Base.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/popup.css' %}">
+
+  </head>
+  <body >
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+       
+      <a class="navbar-brand" href="#"><p><h2>TAASC</h2></p></a>  <span> <h1 style="color:white">| </h1> </span> <b style="color:white">  &nbsp; &nbsp; Advanced Search</b>
+     
+     
+      
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         
+            <ul class="navbar-nav mr-auto">
+            
+          <li>
+          </li>		  
+            </ul>
+              
+            <form class="form-inline my-2 my-lg-0">
+              <li class="nav-link"> <a  href="{% url 'Home' %}">  
+                <i class="fa fa-home" style="font-size: 32px; color:white;"></i>
+              </a>
+               </li> 
+
+             <li class="nav-link"> <a  href="">  
+              <i class="fas fa-sign-out-alt" style="font-size: 32px; color:white;"></i>
+            </a>
+             </li> 
+             
+       </form>
+         </div>
+      </nav>
+
+
+      {% if messages %}
+      {% for message in messages %}
+      <br>
+      <div class="alert success">
+       <span class="closebtn">&times;</span>  
+      <li class="nav-link" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    </div>
+    <br>
+      {% endfor %}
+  {% endif %}
+ 
+
+<div class="container">
+
+
+
+<form class="form-inline mt-5" action="{% url 'Advancedsearch:customSearch' %}" method="POST">
+{% csrf_token %}
+  <div class="input-group mb-3">
+  <select class="custom-select" id="inputselectTable" name="selectTable" onchange=getComboValues(this.value)>
+     <option value="None" selected>None</option>
+    <option value="Fish">Fish Farming </option>
+    <option value="Rubber">Rubber Farming</option>
+    <option value="VegFru">Vegetables and fruits</option>
+    <option value="DomesticAnimals">Domestic Animals </option>
+   
+  </select>
+
+  <select class="custom-select" id="column1id" name="column1">
+     <option value="None" selected>None</option>
+    {% comment %} <option value="Count">Count</option>
+    <option value="Land_Area">Land_Area</option>
+    <option value="Income">Income</option>
+    <option value="Rubber_Sheet">Rubber_Sheet</option>
+    <option value="Rubber_Board">Rubber_Board</option> {% endcomment %}
+
+  </select>
+
+ <select class="custom-select" id="cond1" name="cond1">
+     <option value="None" selected>None</option>
+    <option value="0">=</option>
+    <option value="1">&lt;</option>
+    <option value="2">&gt;</option>
+
+  </select>
+
+<div class="form-group mx-sm-3 mb-2">
+    <label for="inputPassword2" class="sr-only">search</label>
+    <input type="text" class="form-control" id="search1" name ="search1" placeholder="search">
+  </div>
+{% comment %} <button type="submit" class="btn btn-primary mb-2">Search</button> {% endcomment %}
+
+  {% comment %} <select class="custom-select" id="inputGroupSelect01">
+    <option selected>None</option>
+    <option value="1">AND</option>
+    <option value="2">OR</option>
+  </select> {% endcomment %}
+
+ 
+  
+
+  <div class="row">
+ <div>
+  <select class="custom-select" id="inputGroupSelect01" name="column2">
+    <option selected value="None">None</option>
+    <option value="Parish">Parish</option>
+    <option value="Village">Village</option>
+    <option value="District">District</option>
+    <option value="Panch_Muns">Panchayat/Muncipality</option>
+
+  </select>
+  </div>
+
+  {% comment %} <select class="custom-select" id="inputGroupSelect01" name="cond2">
+    
+    <option value="0">=</option>
+    <option value="1">&lt;</option>
+    <option value="2">&gt;</option>
+
+  </select> {% endcomment %}
+
+   <div class="form-group mx-sm-3 mb-2">
+    <label for="inputPassword2" class="sr-only">search</label>
+    <input type="text" class="form-control" id="inputPassword2" placeholder="search" name="search2" >
+  </div>
+  <button  class="btn btn-primary mb-2">Search</button>
+</div>
+
+ </div>
+
+
+ 
+ 
+        
+
+      </div>
+   </form>
+             
+    </div>
+
+
+    <div class="container">
+      
+      <div class="row">
+      <label><strong><span style="color:#534d4d">Search Details :</span></strong></label>
+
+      <table class="table table-bordered table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">UID</th>
+              <th scope="col">Name</th>
+              <th scope="col">District</th>
+              <th scope="col">Village</th>
+              <th scope="col">Parish</th>
+              <th scope="col">Phone</th>
+               <th scope="col">View Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for data in data %}
+            <tr>
+              <td>{{ data.Auth_Id }}</td>
+              <td>{{ data.Name }}</td>
+              <td>{{ data.District }}</td>
+              <td>{{ data.Village }}</td>
+              <td>{{ data.Parish }}</td>
+              <td>{{ data.Phone }}</td>
+              <td>
+                <form action="{% url 'Profile_Home' %}" method="GET">
+                  <input type = "text"  hidden value={{data.Auth_Id}} name="AuthId">
+                 <input type="submit" value ="View Profile" class="btn btn-success"/>
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        </div>
+        </div>
+
+
+    <br>
+
+         <!-- Message button --> 
+         <script>
+        
+          var close = document.getElementsByClassName("closebtn");
+          var i;
+          
+          for (i = 0; i < close.length; i++) {
+            close[i].onclick = function(){
+              var div = this.parentElement;
+              div.style.opacity = "0";
+              setTimeout(function(){ div.style.display = "none"; }, 600);
+            }
+          }
+          </script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+    <script src="{% static 'User/js/jquery-3.2.1.min.js' %}"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed --> 
+    <script src="{% static 'User/js/popper.min.js' %}"></script>
+    <script src="{% static 'User/js/bootstrap-4.0.0.js' %}"></script>
+    
+  </body>
+</html>
