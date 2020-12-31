@@ -21,6 +21,7 @@ urlpatterns = [
     path('UpdateDomestic/', views.updateDomestic, name="updateDomestic"),
     path('UpdateVegFru/', views.updateVegFru, name="updateVegFru"),
     path('UpdateProfile/', views.updateprofile, name="updateprofile"),
+    path('deleteprofile/', views.deleteprofile, name="deleteprofile"),
     path('Logout/',views.Logout,name='Logout'),
     path('Change_Password/',views.Passwordupdate,name='Passwordupdate'),
 ]

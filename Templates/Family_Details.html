@@ -3,7 +3,6 @@
 
 {% block body %}
 
-
 	<div class="container-contact100">
 <!--		<div class="contact100-map" id="google_map" data-map-x="40.722047" data-map-y="-73.986422" data-pin="images/icons/map-marker.png" data-scrollwhell="0" data-draggable="1"></div> -->
 			<div class="contact100-map" style="background-image: url(../static/images/bg-06.jpg);" data-scrollwhell="0" data-draggable="1"></div>
@@ -25,16 +24,17 @@
 
 				<div class="wrap-input100 validate-input">
 					<span class="label-input100">Full Name:</span>
-					<input class="input100" type="text" name="othersname" id="othersnameId"  value="{{ response.Name }}" required>
+					<input class="input100" type="text" name="othersname" id="othersnameId" placeholder="full name" maxlength="45" required>
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input">
 					<span class="label-input100">Relationship:</span>
 					<select class="input100" name="relationship" id="relationshipId" style="padding-top: 10px; border-color: transparent;" required>
-                        <option value="{{ response.Relationship }}" selected>{{ response.Relationship }}</option> 
+                        <option value="" disabled selected hidden>Choose Relation</option> 
                         <option value="Father">Father</option>
                         <option value="Mother">Mother</option>
+						 <option value="Wife">Wife</option>
                         <option value="Brother">Brother</option>
                         <option value="Sister">Sister</option>
                         <option value="Grand Father">Grand Father</option>
@@ -47,8 +47,8 @@
                 
                 <div class="wrap-input100 validate-input">
 					<span class="label-input100">Blood Group:</span>
-                    <select class="input100" name="bloodgroup" id="bloodgroupId"  style="padding-top: 10px; border-color: transparent;" required>
-                        <option value="{{ response.Blood }}" selected>{{ response.Blood }}</option> 
+                    <select class="input100" name="bloodgroup" id="bloodgroupId" style="padding-top: 10px; border-color: transparent;" required>
+                        <option value="" disabled selected hidden>Choose Blood Group...</option> 
                         <option value="A+">A +</option>
                         <option value="A-">A -</option>
                         <option value="B+">B +</option>
@@ -59,23 +59,24 @@
                         <option value="AB-">AB -</option>
                     </select>
                 </div>
+
                 <div class="wrap-input100 validate-input">
 					<span class="label-input100">Job / Student:</span>
-					<input class="input100" type="text" name="job" id="jobId" value="{{ response.Job }}" required>
+					<input class="input100" type="text" name="job" id="jobId" placeholder="job name or current education" maxlength="25" required>
 					<span class="focus-input100"></span>
                 </div>
 
 				<div class="wrap-input100 validate-input">
 					<span class="label-input100">Phone:</span>
-					<input class="input100" type="text" name="phone" id="phoneId" value="{{ response.Phone }}" pattern="[0-9]{10}" title="Please Enter Valid Mobile" maxlength="10" required>
+					<input class="input100" type="text" name="phone" id="phoneId" placeholder="eg : 7095809073" pattern="[0-9]{10}" title="Please Enter Valid Mobile" maxlength="10" required>
 					<span class="focus-input100"></span>
                 </div>
-                
+
 				<div>
 					<div class="container-contact100-form-btn">
                         <button class="contact100-form-btn" type="submit" style="margin-left: 50px;">
                             <span>
-                                UPDATE
+                                ADD
                             </span>
                         </button>
                     </div>
@@ -83,7 +84,5 @@
 			</form>
 		</div>
 	</div>
-
-
 
 	{% endblock %}

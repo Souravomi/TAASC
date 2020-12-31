@@ -25,41 +25,44 @@
 
 				<div class="wrap-input100 validate-input">
 					<span class="label-input100">Land:</span>
-					<input class="input100" type="number" name="rubberland" id="rubberlandId" value="{{ response.Land_Area}}" min="0">
+					<input class="input100" type="number" name="rubberland" id="rubberlandId" placeholder="land in acres" step="any" min="0">
 					<span class="focus-input100"></span>
                 </div>
+
 				<div class="wrap-input100 validate-input">
 					<span class="label-input100">Count:</span>
-					<input class="input100" type="number" name="rubbercount" id="rubbercountId" value="{{ response.Count}}" min="0">
+					<input class="input100" type="number" name="rubbercount" id="rubbercountId" placeholder="number of rubber trees owned" min="0">
 					<span class="focus-input100"></span>
                 </div>
                 
                 <div class="wrap-input100 validate-input">
 					<span class="label-input100">Latex:</span>
-					<input class="input100" type="number" name="latex" id="latexId" value="{{ response.Income}}" min="0">
+					<input class="input100" type="number" name="latex" id="latexId" step="any" placeholder="latex quantity in kilograms" min="0">
 					<span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input">
 					<span class="label-input100">Rubber Sheet:</span>
-					<input class="input100" type="number" name="rubbersheet" id="rubbersheetId" value="{{ response.Rubber_Sheet}}" min="">
+					<input class="input100" type="number" name="rubbersheet" id="rubbersheetId" step="any" placeholder="enter rubber sheet quantity in kilograms" min="">
 					<span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input">
 					<span class="label-input100">Rubber Board Membership:</span>
-					<select class="input100" name="membership" id="membership" style="padding-top: 10px; border-color: transparent;" required> 
-						<option value="{{response.Rubber_Board}}"  selected >{{ response.Rubber_Board}}</option>
-						<option value="yes">yes</option>
-						<option value="no">no</option>
+					<select class="input100" name="membership" id="membershipId" style="padding-top: 10px; border-color: transparent;">
+						<option value="" disabled selected hidden>choose yes or no</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
 					</select>
                 </div>
+
+               
 
 				<div>
 					<div class="container-contact100-form-btn">
                         <button class="contact100-form-btn" type="submit" style="margin-left: 50px;">
                             <span>
-                                UPDATE
+                                ADD
                             </span>
                         </button>
                     </div>
@@ -67,7 +70,6 @@
 			</form>
 		</div>
 	</div>
-
 
 
 	{% endblock %}

@@ -38,19 +38,19 @@
 
 				<div class="wrap-input100 validate-input">
 					<span class="label-input100">Count:</span>
-					<input class="input100" type="number" name="animalcount" id="animalcountId" value="{{ response.Count }}" min="0" required>
+					<input class="input100" type="number" name="animalcount" id="animalcountId" value="{{ response.Count }}" min="0" max="10000000" required>
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input">
 					<span class="label-input100">Income:</span>
-					<input class="input100" type="number" name="animalincome" id="animalincomeId" value="{{ response.Income }}" required>
+					<input class="input100" type="number" step="any" name="animalincome" id="animalincomeId" value="{{ response.Income }}" max="10000000" required>
 					<span class="focus-input100"></span>
                 </div>
                 
                 <div class="wrap-input100 validate-input">
 					<span class="label-input100">Marketing:</span>
-					<input class="input100" type="text" name="animalmarketing" id="animalmarketingId" value="{{ response.Marketing }}"  required>
+					<input class="input100" type="text" name="animalmarketing" id="animalmarketingId" value="{{ response.Marketing }}" maxlength="19" required>
 					<span class="focus-input100"></span>
                 </div>
 

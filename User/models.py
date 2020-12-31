@@ -11,7 +11,7 @@ class BasicDetails(models.Model):
     Parish = models.CharField(max_length=50)
     Village = models.CharField(max_length=50)
     Panch_Muns = models.CharField(max_length=50)
-    District = models.CharField(max_length=20)
+    District = models.CharField(max_length=25)
     Phone = models.CharField(max_length=15)
     Email = models.CharField(max_length=50)
     Occupation = models.CharField(max_length=30)
@@ -27,14 +27,14 @@ class FamilyMembers(models.Model):
     Name = models.CharField(max_length=50)
     Relationship = models.CharField(max_length=15)
     Blood = models.CharField(max_length=5)
-    Job = models.CharField(max_length=20)
+    Job = models.CharField(max_length=30)
     Phone = models.CharField(max_length=15)
 
 class DomesticAnimals(models.Model):
     Auth_Id = models.ForeignKey(BasicDetails,on_delete=models.CASCADE)
     Category = models.CharField(max_length=20)
     Count = models.CharField(max_length=10)
-    Income = models.CharField(max_length=10)
+    Income = models.TextField()
     Marketing = models.CharField(max_length=20)
     Weed = models.CharField(max_length=5)
     More_Space = models.CharField(max_length=5)
@@ -43,9 +43,9 @@ class DomesticAnimals(models.Model):
 class VegFru(models.Model):
     Auth_Id = models.ForeignKey(BasicDetails,on_delete=models.CASCADE)
     Category = models.CharField(max_length=20)
-    Land_Area = models.CharField(max_length=10)
-    Income = models.CharField(max_length=10)
-    Marketing = models.CharField(max_length=20)
+    Land_Area = models.CharField(max_length=20)
+    Income = models.CharField(max_length=20)
+    Marketing = models.CharField(max_length=25)
     Weed = models.CharField(max_length=5)
     More_Space = models.CharField(max_length=5)
     More_Intrest = models.CharField(max_length=5)
@@ -53,28 +53,28 @@ class VegFru(models.Model):
 class Fish(models.Model):
     Auth_Id = models.ForeignKey(BasicDetails,on_delete=models.CASCADE)
     Category = models.CharField(max_length=20)
-    Land_Area = models.CharField(max_length=10)
-    Method = models.CharField(max_length=15)
-    Income = models.CharField(max_length=10)
+    Land_Area = models.CharField(max_length=20)
+    Method = models.CharField(max_length=25)
+    Income = models.CharField(max_length=20)
     Marketing = models.CharField(max_length=20)
     More_Space = models.CharField(max_length=5)
     More_Intrest = models.CharField(max_length=5)
 
 class Rubber(models.Model):
     Auth_Id = models.ForeignKey(BasicDetails,on_delete=models.CASCADE)
-    Land_Area = models.CharField(max_length=10)
+    Land_Area = models.CharField(max_length=30)
     Count = models.CharField(max_length=10)
-    Income = models.CharField(max_length=10)
+    Income = models.CharField(max_length=20)
     Rubber_Sheet = models.CharField(max_length=20)
     Rubber_Board = models.CharField(max_length=5)
 
 class Survey(models.Model):
     Auth_Id = models.ForeignKey(BasicDetails,on_delete=models.CASCADE)
     Intrest = models.CharField(max_length=5)
-    Jobs = models.CharField(max_length=110)
-    Business = models.CharField(max_length=110)
-    News_Paper = models.CharField(max_length=50)
-
+    Jobs = models.TextField()
+    Business = models.TextField()
+    News_Paper = models.TextField()
+    
 class Contact(models.Model):
     Auth_Name = models.CharField(max_length=30)
     Name = models.CharField(max_length=40)

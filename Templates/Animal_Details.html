@@ -1,0 +1,102 @@
+{% extends 'Common_Template.html' %}
+{% load static %}
+
+{% block body %}
+
+	<div class="container-contact100">
+<!--		<div class="contact100-map" id="google_map" data-map-x="40.722047" data-map-y="-73.986422" data-pin="images/icons/map-marker.png" data-scrollwhell="0" data-draggable="1"></div> -->
+			<div class="contact100-map" style="background-image: url(../static/images/bg-03.jpg);" data-scrollwhell="0" data-draggable="1"></div>
+
+		<div class="wrap-contact100">
+			<div class="contact100-form-title" style="background-image: url(../static/images/bg-01.jpg);">
+				<span class="contact100-form-title-1">
+					Domestic Animal Details
+				</span>
+
+				<span class="contact100-form-title-2">
+					Enter domestic animal details
+				</span>
+			</div>
+
+			<form class="contact100-form validate-form" action="" method="POST">
+
+				{% csrf_token %}
+
+                <div class="wrap-input100 validate-input">
+                    <span class="label-input100">Type:</span>
+                    <select class="input100" name="animaltype" id="animaltypeId" style="padding-top: 10px; border-color: transparent;" required>
+                        <option value="" disabled selected hidden>Choose Type Of Animal...</option> 
+                        <option value="cow">Cow</option>
+                        <option value="goat">Goat</option>
+                        <option value="chicken">Chicken</option>
+                        <option value="duck">Duck</option>
+                        <option value="rabbit">Rabbit</option>
+                        <option value="Others">Others</option>
+                    </select>
+				</div>
+
+				<div class="wrap-input100 validate-input">
+					<span class="label-input100">Count:</span>
+					<input class="input100" type="number" name="animalcount" id="animalcountId" placeholder="count of animal" min="0" max="10000000" required>
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input">
+					<span class="label-input100">Income:</span>
+					<input class="input100" type="number" step="any" name="animalincome" id="animalincomeId" placeholder="income in litre or quantity" max="10000000"  required>
+					<span class="focus-input100"></span>
+                </div>
+                
+                <div class="wrap-input100 validate-input">
+					<span class="label-input100">Marketing:</span>
+					<input class="input100" type="text" name="animalmarketing" id="animalmarketingId" placeholder="marketing method" maxlength="19" required>
+					<span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+					<span class="label-input100">Grass Farming:</span>
+					<select class="input100" name="animalbreed" id="animalbreedId" style="padding-top: 10px; border-color: transparent;" required>
+						<option value="" disabled selected hidden>choose yes or no</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+					<span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+					<span class="label-input100">Capacity To Include More:</span>
+					<select class="input100" name="animalcapacity" id="animalcapacityId" style="padding-top: 10px; border-color: transparent;" required>
+						<option value="" disabled selected hidden>choose yes or no</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+					<span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+					<span class="label-input100">Intrest To Include More:</span>
+					<select class="input100" name="animalinterest" id="animalinterestId" style="padding-top: 10px; border-color: transparent;" required>
+						<option value="" disabled selected hidden>choose yes or no</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+					<span class="focus-input100"></span>
+                </div>
+
+				
+				<div>
+					<div class="container-contact100-form-btn">
+                        <button class="contact100-form-btn" type="submit" style="margin-left: 50px;">
+                            <span>
+                                ADD
+                            </span>
+                        </button>
+                    </div>
+                </div>
+			</form>
+		</div>
+	</div>
+
+{% endblock %}
+
+

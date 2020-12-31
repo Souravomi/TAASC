@@ -32,7 +32,7 @@ def Login(request):
 
         else:
            #messages.success(request,'Incorrect Username or Password!')
-           print("Incorrect Username or Password!")
+           #print("Incorrect Username or Password!")
            return render(request,'Login.html')
     
     else:
@@ -61,7 +61,7 @@ def Passwordupdate(request):
         if user is not None :
             user.set_password(New)
             user.save()
-            print("Password Updated")
+            #print("Password Updated")
             return render(request,'Login.html')
         else:
             messages.success(request,'Current Password Entered Incorrect!')
@@ -86,7 +86,7 @@ def Profile_Home(request):
             num = 0
 
         if num == 0:
-            print("No Records Found")
+            #print("No Records Found")
             messages.success(
                 request, 'Sorry Records Not Found With Auth Id -' + Id)
             return render(request, 'Home.html')
@@ -117,7 +117,7 @@ def Main_Home(request):
     Veg = VegFru.objects.filter(Auth_Id=Auth)
     domestic = DomesticAnimals.objects.filter(Auth_Id=Auth)
     survy = Survey.objects.filter(Auth_Id=Auth)
-    print(type(survy))
+
     return render(request, 'Profile_Home.html', {'Profile': Profile, 'Family': Family, 'Rub': Rub,
                                                  'Fish_Data': Fish_Data, 'Veg': Veg,'Animl':domestic,
                                                  'survy':survy})
@@ -148,7 +148,7 @@ def Profile(request):
             number = 1
 
         if number == 1:
-            print("Records Found")
+            #print("Records Found")
             messages.error(request,"This person already exists in our system")
             return render(request, 'Basic_Details.html')
         else:
@@ -219,9 +219,9 @@ def Rubber_Farm(request):
 
             data = "Rubber_Farm"
             if validations.Tableupdate(data,request.session['Auth']):
-                print("updated")
+                # print("updated")
 
-            messages.success(request, 'Rubber Farming Details Added')
+                messages.success(request, 'Rubber Farming Details Added')
             return redirect('Main_Home')
         else:
             messages.error(request, 'Sever side valiadtion failed...')
@@ -252,9 +252,9 @@ def Animal(request):
 
             data = "Animal_Farm"
             if validations.Tableupdate(data,request.session['Auth']):
-                print("updated")
+                # print("updated")
 
-            messages.success(request, 'Animal Farming Details Added')
+                messages.success(request, 'Animal Farming Details Added')
             return redirect('Main_Home')
         else:
             messages.error(request, 'Sever side valiadtion failed...')
@@ -286,9 +286,9 @@ def Veg_Fru(request):
 
             data = "Veg_Farm"
             if validations.Tableupdate(data,request.session['Auth']):
-                print("updated")
+                # print("updated")
 
-            messages.success(request, 'Vegetable Details Added')
+                messages.success(request, 'Vegetable Details Added')
 
             return redirect('Main_Home')
         else:
@@ -324,9 +324,9 @@ def Fish_Farm(request):
 
             data = "Fish_Farm"
             if validations.Tableupdate(data,request.session['Auth']):
-                print("updated")
+                # print("updated")
 
-            messages.success(request, 'Fish Farming Details Added')
+                messages.success(request, 'Fish Farming Details Added')
 
             return redirect('Main_Home')
         else:
@@ -453,6 +453,42 @@ def updateprofile(request):
         data.Occupation = request.POST['occupation']
         data.save()
         return redirect('Main_Home')
+
+@login_required(login_url='/Login')
+def deleteprofile(request):
+    if 'profile' in request.POST:
+        Id = request.POST['adhr']
+        BasicDetails.objects.filter(Auth_Id=Id).delete()
+        messages.success(request,'Profile Deleted Associated With Aadhar : ' + Id)
+        return redirect('Home')
+    elif 'family' in request.GET:
+        Id = request.GET['key'] 
+        FamilyMembers.objects.filter(id=Id).delete()
+        messages.success(request,'Family Data Deleted')
+        return redirect('Main_Home')
+    elif 'rubber' in request.GET:
+        Id = request.GET['key'] 
+        Rubber.objects.filter(id=Id).delete()
+        messages.success(request,'Rubber Data Deleted')
+        return redirect('Main_Home')
+    elif 'animal' in request.GET:
+        Id = request.GET['key'] 
+        DomesticAnimals.objects.filter(id=Id).delete()
+        messages.success(request,'Animal Farm Data Deleted')
+        return redirect('Main_Home')
+    elif 'fish' in request.GET:
+        Id = request.GET['key'] 
+        Fish.objects.filter(id=Id).delete()
+        messages.success(request,'Fish Farm Data Deleted')
+        return redirect('Main_Home')
+    elif 'veg' in request.GET:
+        Id = request.GET['key'] 
+        VegFru.objects.filter(id=Id).delete()
+        messages.success(request,'Vegitables Farm Data Deleted')
+        return redirect('Main_Home')
+    else:
+        return render(request,'Profile_Home.html')
+
 
 
 @login_required(login_url='/Login')

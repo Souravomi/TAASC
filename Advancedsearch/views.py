@@ -7,6 +7,7 @@ import json
 from django.core import serializers
 from django.db.models import Q,FilteredRelation
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -20,8 +21,33 @@ def getAll(request):
         }) 
 
 @login_required
+def BloodSearch(request):
+    if 'bld' in request.POST:
+        blood = request.POST['blood']
+        request.session['blood'] = blood
+        data1 = FamilyMembers.objects.filter(Blood=blood)
+        data = BasicDetails.objects.filter(Auth_Id__in=data1.values('Auth_Id')).order_by('Auth_Id')
+
+        #Pagination
+        paginator = Paginator(data,per_page=10)
+        page_number = request.GET.get('page',1)
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'AdvancedSearch/Advanced_Search.html',
+        {'data':page_obj.object_list,'paginator':paginator,'page_number':page_number,'page_obj':page_obj})
+    else:
+        #Pagination
+        data1 = FamilyMembers.objects.filter(Blood=request.session['blood'])
+        data = BasicDetails.objects.filter(Auth_Id__in=data1.values('Auth_Id')).order_by('Auth_Id')
+        paginator = Paginator(data,per_page=10)
+        page_number = request.GET.get('page',1)
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'AdvancedSearch/Advanced_Search.html',
+        {'data':page_obj.object_list,'paginator':paginator,'page_number':page_number,'page_obj':page_obj})
+
+
+@login_required
 def Search(request):
-    return render(request, 'Advanced_Search.html')
+    return render(request, 'AdvancedSearch/Advanced_Search.html')
 
 def getModelsFields(request):
     if request.method == "GET":
@@ -30,7 +56,7 @@ def getModelsFields(request):
 
 def customSearch(request):
     if request.method=="POST":
-        print("called this")
+        # print("called this")
         tableName = request.POST["selectTable"]
         column1=request.POST["column1"]
         Search1=request.POST["search1"]
@@ -47,14 +73,14 @@ def customSearch(request):
         if Search2 =="":
             Search2=None
             
-        print(cond1)
-        print(column1)
-        print(Search1)
-        print("Data from "+ tableName)
+        # print(cond1)
+        # print(column1)
+        # print(Search1)
+        # print("Data from "+ tableName)
         alldata=buildQuery(tableName,column1,cond1,Search1,column2=column2,search2=Search2)
         # data = serializers.serialize('json',alldata)
         # # return HttpResponse(data, content_type="text/json-comment-filtered")
-        return render(request,'Advanced_Search.html',{
+        return render(request,'AdvancedSearch/Advanced_Search.html',{
             'data':alldata
         }) 
     else:
@@ -64,10 +90,10 @@ def buildQuery(tableNameStr,column1,condClause1,search1,isJoinCondAvailable=None
     if tableNameStr == "None":
         return None
     tableName = tableNameStr.lower()
-    print(tableName +""+ tableNameStr)
+    # print(tableName +""+ tableNameStr)
     tableName = apps.get_model('User',tableNameStr)
 
-    print(type(tableNameStr))
+    # print(type(tableNameStr))
     queryData = None
     # queryData=BasicDetails.objects.filter(**{tableName+"__"+column1:search1,column2+"__"+"icontains":"Kottayam"})
     
@@ -80,13 +106,14 @@ def buildQuery(tableNameStr,column1,condClause1,search1,isJoinCondAvailable=None
        
     else:
         if condClause1 == "0":
-            print("cond1 called")
+            # print("cond1 called")
             try:
                 queryData = BasicDetails.objects.filter(**{tableNameStr.lower()+"__"+column1:search1})
                 # queryData=BasicDetails.objects.filter(**{tableName+"__"+column1:search1})
 
             except:
-                print("Not a valid query")
+                pass
+                # print("Not a valid query")
 
                 
         elif condClause1 =="1":
@@ -94,32 +121,37 @@ def buildQuery(tableNameStr,column1,condClause1,search1,isJoinCondAvailable=None
                  queryData = BasicDetails.objects.filter(**{tableNameStr.lower()+"__"+column1+"__lte":search1})
                 # queryData=BasicDetails.objects.filter(**{tableName+"__"+column1+"__lte":search1})
             except:
-                print("Not a valid query")
+                pass
+                # print("Not a valid query")
                 
         elif condClause1 =="2":
             try:
                  queryData = BasicDetails.objects.filter(**{tableNameStr.lower()+"__"+column1+"__gte":search1})
                 # queryData=BasicDetails.objects.filter(**{tableName+"__"+column1+"__gte":search1})
             except:
-                print("Not a valid query")
+                pass
+                # print("Not a valid query")
 
     if column2 is not None and search2 is not None:
         if condClause1 == "0":
-            print("called condclause1")
+            # print("called condclause1")
             try:
                 queryData=BasicDetails.objects.filter(**{tableNameStr.lower()+"__"+column1:search1,column2+"__"+"icontains":search2})
             except:
-                print("Not a valid query")
+                pass
+                # print("Not a valid query")
         elif condClause1 =="1":
             try:
                 queryData=BasicDetails.objects.filter(**{tableNameStr.lower()+"__"+column1+"__lte":search1,column2+"__"+"icontains":search2})
             except:
-                print("Not a valid query")
+                pass
+                # print("Not a valid query")
         elif condClause1 =="2":
             try:
                 queryData=BasicDetails.objects.filter(**{tableNameStr.lower()+"__"+column1+"__gte":search1,column2+"__"+"icontains":search2})
             except:
-                print("Not a valid query")
+                pass
+                # print("Not a valid query")
         # queryData = BasicDetails.objects.filter(**{tableNameStr.lower()+"__"+column1:search1,column2:search2})
 
    
@@ -135,7 +167,7 @@ def fetchColumnNames(tableName):
             names.append(formatted)
             
 
-    print(names)
+    # print(names)
     return names
 
 

@@ -27,15 +27,15 @@
                     <span class="label-input100">Type:</span>
                     <select class="input100" name="fishtype" id="fishtypeId" style="padding-top: 10px; border-color: transparent;" required>
                         <option value="{{response.Category}}" selected >{{response.Category}}</option> 
-                        <option value="redbelly">Red Belly</option>
-                        <option value="siloppy">Siloppy</option>
+                        <option value="Redbelly">Red Belly</option>
+                        <option value="Siloppy">Siloppy</option>
                         <option value="Others">Others</option>
                     </select>
 				</div>
 
 				<div class="wrap-input100 validate-input">
 					<span class="label-input100">Land:</span>
-					<input class="input100" type="number" name="fishland" id="fishlandId" value="{{response.Land_Area}}" min="0" required>
+					<input class="input100" type="number" step="any" name="fishland" id="fishlandId" value="{{response.Land_Area}}" min="0" required>
 					<span class="focus-input100"></span>
                 </div>
                 
@@ -43,22 +43,22 @@
                     <span class="label-input100">Method Of Farming:</span>
                     <select class="input100" name="method" id="methodId" style="padding-top: 10px; border-color: transparent;" required>
                         <option value="{{response.Method}}" selected >{{response.Method}}</option> 
-                        <option value="pond">കുളം ( Pond )</option>
-                        <option value="tank">ടാങ്ക് ( Tank )</option>
-                        <option value="tarpaulinfishpond">പടുതാക്കുളം( Tarpaulin Fish Pond )</option>
+                        <option value="Pond">കുളം ( Pond )</option>
+                        <option value="Tank">ടാങ്ക് ( Tank )</option>
+                        <option value="Tarpaulin Fish Pond">പടുതാക്കുളം( Tarpaulin Fish Pond )</option>
                         <option value="Others">Others</option>
                     </select>
 				</div>
 
 				<div class="wrap-input100 validate-input">
 					<span class="label-input100">Income:</span>
-					<input class="input100" type="number" name="fishincome" id="fishincomeId" value="{{response.Income}}" required>
+					<input class="input100" type="number" step="any" name="fishincome" id="fishincomeId" value="{{response.Income}}" required>
 					<span class="focus-input100"></span>
                 </div>
                 
                 <div class="wrap-input100 validate-input">
 					<span class="label-input100">Marketing:</span>
-					<input class="input100" type="text" name="fishmarketing" id="fishmarketingId" value="{{response.Marketing}}" required>
+					<input class="input100" type="text" name="fishmarketing" id="fishmarketingId" value="{{response.Marketing}}" maxlength="19" required>
 					<span class="focus-input100"></span>
                 </div>
 

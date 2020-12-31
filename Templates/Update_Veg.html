@@ -26,7 +26,7 @@
                 <div class="wrap-input100 validate-input">
                     <span class="label-input100">Type:</span>
                     <select class="input100" name="vegtype" id="vegtypeId" style="padding-top: 10px; border-color: transparent;" required>
-                        <option value="" disabled selected hidden>Choose Type Of Vegetable...</option> 
+                        <option value="{{ response.Category }}"selected>{{ response.Category }}</option> 
                         <option value="beans">പയര്‍ ( Beans )</option>
                         <option value="bitterground">പാവല്‍ ( Bitter Ground )</option>
                         <option value="brinjal">വഴുതനങ്ങ ( Brinjal )</option>
@@ -46,26 +46,26 @@
 
 				<div class="wrap-input100 validate-input">
 					<span class="label-input100">Area Of Land:</span>
-					<input class="input100" type="number" name="vegland" id="veglandId" placeholder="area of land" min="0" required>
+					<input class="input100" type="number" step="any" name="vegland" id="veglandId" value="{{ response.Land_Area }}" min="0" required>
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input">
 					<span class="label-input100">Income:</span>
-					<input class="input100" type="number" name="vegincome" id="vegincomeId" placeholder="income per kilo in one season " required>
+					<input class="input100" type="number" step="any" name="vegincome" id="vegincomeId" value="{{ response.Income }}" required>
 					<span class="focus-input100"></span>
                 </div>
                 
                 <div class="wrap-input100 validate-input">
 					<span class="label-input100">Marketing:</span>
-					<input class="input100" type="text" name="vegmarketing" id="vegmarketingId" placeholder="marketing method" required>
+					<input class="input100" type="text" name="vegmarketing" id="vegmarketingId" value="{{ response.Marketing }}" maxlength="20" required>
 					<span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input">
-					<span class="label-input100">Grass Farming:</span>
+					<span class="label-input100">Breed Farming:</span>
 					<select class="input100" name="vegbreed" id="vegbreedId" style="padding-top: 10px; border-color: transparent;" required>
-						<option value="" disabled selected hidden>choose yes or no</option>
+						<option value="" disabled selected hidden>{{ response.Weed }}</option>
 						<option value="yes">Yes</option>
 						<option value="no">No</option>
 					</select>
@@ -75,7 +75,7 @@
                 <div class="wrap-input100 validate-input">
 					<span class="label-input100">Capacity To Include More:</span>
 					<select class="input100" name="vegcapacity" id="vegcapacityId" style="padding-top: 10px; border-color: transparent;" required>
-						<option value="" disabled selected hidden>choose yes or no</option>
+						<option value="" disabled selected hidden>{{ response.More_Space }}</option>
 						<option value="yes">Yes</option>
 						<option value="no">No</option>
 					</select>
@@ -85,7 +85,7 @@
                 <div class="wrap-input100 validate-input">
 					<span class="label-input100">Intrest To Include More:</span>
 					<select class="input100" name="veginterest" id="veginterestId" style="padding-top: 10px; border-color: transparent;" required>
-						<option value="" disabled selected hidden>choose yes or no</option>
+						<option value="" disabled selected hidden>{{ response.More_Intrest }}</option>
 						<option value="yes">Yes</option>
 						<option value="no">No</option>
 					</select>
@@ -97,8 +97,7 @@
 					<div class="container-contact100-form-btn">
                         <button class="contact100-form-btn" type="submit" style="margin-left: 50px;">
                             <span>
-                                ADD
-                                <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                                UPDATE
                             </span>
                         </button>
                     </div>
